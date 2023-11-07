@@ -11,6 +11,7 @@ import Product from "./models/product.js";
 import Images from "./models/SlideImages.js"
 import Size from "./models/Taille.js"
 import Color from "./models/color.js"
+import Cart from "./models/cart.js"
 //-----------------------------------------
 import db from "./db/db.js"
 import bodyParser from 'body-parser'
@@ -34,7 +35,12 @@ Images.belongsTo(Product)
 
 Product.hasMany(Color)
 Color.belongsTo(Product)
+
+Cart.hasMany(Size,{foreignKey:'productId'})
+Size.belongsTo(Cart)
  
+Cart.hasMany(Color,{foreignKey:'productId'})
+Color.belongsTo(Cart,{foreignKey:'productId'})
 
 //----------------------------------------------------
 db.sync({alter:true})

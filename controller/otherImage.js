@@ -17,7 +17,7 @@ const addImage = (req,res)=>{
 const addSize = (req,res)=>{
     const {body} = req
   
-    Taille.create({...body})
+    Size.create({...body})
     .then(()=> {
         res.status(201).json({msg : "create product"})
         

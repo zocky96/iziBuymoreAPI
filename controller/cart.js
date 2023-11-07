@@ -1,9 +1,10 @@
 import { where } from "sequelize";
 import Cart from "../models/cart.js";
 import Product from "../models/product.js";
-
+import Size from "../models/Taille.js";
 import Images from "../models/SlideImages.js"
 import {  getProductById } from "./productController.js";
+import Color from "../models/color.js";
 const getCart = (req,res) => {
     const {userId} = req.params
     console.log(userId)
@@ -12,7 +13,10 @@ const getCart = (req,res) => {
             userId:userId
         },
      
-        attributes:{exclude:["createdAt","updatedAt"]}
+        include:[
+            Color,
+            Size
+        ]
     })
     .then(cart => {
         console.log("okok")
