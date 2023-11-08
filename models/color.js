@@ -13,7 +13,8 @@ const Color = db.define("color",{
     color:{
         type : DataTypes.STRING,
         allowNull : false
-    }
+    },
+   
 })
 
 export default Color

@@ -13,7 +13,8 @@ const Taille = db.define("taille",{
     size:{
         type : DataTypes.STRING,
         allowNull : false
-    }
+    },
+    
 })
 
 export default Taille 

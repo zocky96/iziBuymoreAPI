@@ -13,10 +13,7 @@ const getCart = (req,res) => {
             userId:userId
         },
      
-        include:[
-            Color,
-            Size
-        ]
+        
     })
     .then(cart => {
         console.log("okok")

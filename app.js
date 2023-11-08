@@ -28,19 +28,19 @@ app.use(routerOrder)
 app.use("/auth",routerAuth)
 //---------------- Relation -------------------------
 Product.hasMany(Size)
-Size.belongsTo(Product)
+Size.belongsTo(Product,{foreignKey:'productId'})
 
 Product.hasMany(Images)
-Images.belongsTo(Product)
+Images.belongsTo(Product,{foreignKey:'productId'})
 
 Product.hasMany(Color)
 Color.belongsTo(Product)
 
-Cart.hasMany(Size,{foreignKey:'productId'})
-Size.belongsTo(Cart)
- 
-Cart.hasMany(Color,{foreignKey:'productId'})
-Color.belongsTo(Cart,{foreignKey:'productId'})
+//Cart.hasMany(Size,{foreignKey:'productId'})
+//Size.belongsTo(Cart,{foreignKey:'productId'})
+  
+//Cart.hasMany(Color,{foreignKey:'productId'})
+//Color.belongsTo(Cart,{foreignKey:'productId'})
 
 //----------------------------------------------------
 db.sync({alter:true})

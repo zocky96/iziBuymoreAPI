@@ -12,7 +12,8 @@ const Images = db.define("images",{
     image:{
         type : DataTypes.STRING,
         allowNull : false
-    }
+    },
+     
 })
 
 export default Images
