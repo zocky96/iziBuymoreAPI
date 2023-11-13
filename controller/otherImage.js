@@ -1,6 +1,7 @@
 import Images from "../models/SlideImages.js";
 import Size from "../models/Taille.js";
 import Color from "../models/color.js"
+
 import db from "../db/db.js";
 const addImage = (req,res)=>{
     const {body} = req

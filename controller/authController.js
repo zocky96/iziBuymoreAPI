@@ -22,7 +22,7 @@ const login = (req,res) =>{
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email
-           },"tupuscommelecacadudiable",{expiresIn:"1 hour"})
+           },process.env.JWT_SECRET_WORD,{expiresIn:process.env.JWT_DURING})
            console.log(token)
            return res.status(201).json({access_token : token})
         })

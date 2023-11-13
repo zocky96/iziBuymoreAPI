@@ -1,9 +1,14 @@
 import { Sequelize } from "sequelize";
-//import Product from "../models/product.js"
-//import Images from "../models/SlideImages.js"
-let seq = new Sequelize("sysizi","root","arnob123",{dialect:'mysql',host: '198.71.48.131'})
-//let seq = new Sequelize("izi","izi","1234",{dialect:'mysql',host: 'localhost'}) 
-//import Product from "../models/product.js" 
-//Product.hasMany(Images)
-//Images.belongsTo(Product)
-export default seq     
+
+//let seq = new Sequelize("sysizi","root","arnob123",{dialect:'mysql',host: '198.71.48.131'})
+let seq = new Sequelize(
+        process.env.DB_NAME,
+        process.env.DB_USER_NAME,
+        process.env.DB_PASSWORD,
+        {
+            dialect:'mysql',
+            host: process.env.DB_HOST,
+            port:process.env.DB_PORT
+        }
+    ) 
+export default seq      

@@ -1,4 +1,6 @@
 import express from "express";
+import helmet from "helmet";
+//============ route
 import router from "./routes/routes.js";
 import routerUser from "./routes/userRouter.js";
 import routerAuth from "./routes/auth.js";
@@ -6,6 +8,8 @@ import routerCart from "./routes/cart.js";
 import routerFav from "./routes/favoris.js";
 import routerOrder from "./routes/order.js";
 import routerImage from "./routes/otherImage_.js";
+import routerCategory from "./routes/category.js";
+import routerSubCategory from "./routes/subCategory.js";
 //------------models---------------------
 import Product from "./models/product.js";
 import Images from "./models/SlideImages.js"
@@ -15,7 +19,10 @@ import Cart from "./models/cart.js"
 //-----------------------------------------
 import db from "./db/db.js"
 import bodyParser from 'body-parser'
+import SubCategory from "./models/sub_category.js";
+import Category from "./models/category.js";
 const app = express()
+//app.use(helmet())
 app.use(express.json())
 app.use(express.static("public"))
 app.use(router)
@@ -24,6 +31,8 @@ app.use(routerCart)
 app.use(routerFav)
 app.use(routerImage)
 app.use(routerOrder)
+app.use(routerCategory)
+app.use(routerSubCategory)
 //pp.use(routerImage)
 app.use("/auth",routerAuth)
 //---------------- Relation -------------------------
@@ -36,6 +45,16 @@ Images.belongsTo(Product,{foreignKey:'productId'})
 Product.hasMany(Color)
 Color.belongsTo(Product)
 
+Category.hasMany(SubCategory)
+SubCategory.belongsTo(Category)
+
+Category.hasMany(Product)
+Product.belongsTo(Category)
+
+
+SubCategory.hasMany(Product)
+Product.belongsTo(SubCategory)
+
 //Cart.hasMany(Size,{foreignKey:'productId'})
 //Size.belongsTo(Cart,{foreignKey:'productId'})
   
@@ -46,5 +65,5 @@ Color.belongsTo(Product)
 db.sync({alter:true})
 .then((console.log("nu bn")))
 .catch(error => console.log(error))
-var port = 4444
+var port = process.env.SERVER_PORT
 app.listen(port,() => console.log("listen on port "+port))  
