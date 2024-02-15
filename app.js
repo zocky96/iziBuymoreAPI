@@ -1,5 +1,9 @@
 import express from "express";
 import helmet from "helmet";
+import dotenv from "dotenv";
+import cors from "cors";
+
+
 //============ route
 import router from "./routes/routes.js";
 import routerUser from "./routes/userRouter.js";
@@ -25,6 +29,7 @@ const app = express()
 //app.use(helmet())
 app.use(express.json())
 app.use(express.static("public"))
+app.use(cors())
 app.use(router)
 app.use(routerUser)
 app.use(routerCart)
@@ -65,5 +70,9 @@ Product.belongsTo(SubCategory)
 db.sync({alter:true})
 .then((console.log("nu bn")))
 .catch(error => console.log(error))
+
+
+dotenv.config({path:process.cwd()+"\\.env"}) 
 var port = process.env.SERVER_PORT
+console.log(port) 
 app.listen(port,() => console.log("listen on port "+port))  
