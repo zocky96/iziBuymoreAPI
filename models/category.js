@@ -8,7 +8,7 @@ const Category = db.define("category",{
         autoIncrement: true,
         allowNull:false
     },
-    category:{
+    categorie:{
         type: DataTypes.STRING,
         allowNull: false
     },
